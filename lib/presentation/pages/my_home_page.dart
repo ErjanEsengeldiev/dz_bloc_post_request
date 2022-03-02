@@ -26,12 +26,8 @@ class MyHomePage extends StatelessWidget {
               return UserCreateWidget(
                   nameController: nameController, jobController: jobController);
             } else if (state is UserCreatedState) {
-              return Column(
-                children: [
-                  Text('Name:${state.user.name}'),
-                  Text('Name:${state.user.job}'),
-                  Text('Name:${DateFormat('yyyy-MM-dd').parse(state.user.createdAt!)}'),
-                ],
+              return UserLoadedWidget(
+                state: state,
               );
             } else if (state is UserLoadingState) {
               return const Center(
@@ -41,6 +37,50 @@ class MyHomePage extends StatelessWidget {
               return const Text('Incorect State');
             }
           },
+        ),
+      ),
+    );
+  }
+}
+
+class UserLoadedWidget extends StatelessWidget {
+  final UserCreatedState state;
+  const UserLoadedWidget({
+    Key? key,
+    required this.state,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 50),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Card(
+              child: ListTile(
+                leading: const Text('Name'),
+                title: Text('${state.user.name}'),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: const Text(
+                  'Job',
+                  style: TextStyle(),
+                ),
+                title: Text('Job:${state.user.job}'),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: const Text('crated date:'),
+                title: Text(
+                    '${DateFormat('yyyy-MM-dd').parse(state.user.createdAt!)}'),
+              ),
+            ),
+          ],
         ),
       ),
     );
