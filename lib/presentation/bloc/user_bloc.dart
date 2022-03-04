@@ -14,8 +14,28 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         emit(UserCreatedState(await UserApiProvider()
             .postUser(name: event.name, job: event.job)));
       } catch (eror) {
+        throw Exception('Eror post User');
+      }
+    });
+    on<UserEditEvent>((event, emit) async {
+      emit(UserLoadingState());
+      try {
+        emit(UserEditedState(
+            await UserApiProvider().putUser(name: event.name, job: event.job)));
+      } catch (eror) {
+        throw Exception('Eror put User');
+      }
+    });
+    on<UserDelateEvent>((event, emit) async {
+      emit(UserLoadingState());
+      try {
+        emit(UserDelateState());
+      } catch (eror) {
         throw Exception('Eror convert User');
       }
+    });
+    on<UserGetBackEvent>((event, emit) {
+      emit(UserInitialState());
     });
   }
 }

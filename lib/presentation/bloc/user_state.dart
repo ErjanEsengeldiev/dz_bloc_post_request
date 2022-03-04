@@ -12,3 +12,11 @@ class UserCreatedState extends UserState {
 
   UserCreatedState(this.user);
 }
+
+class UserDelateState extends UserState{}
+
+class UserEditedState extends UserState {
+  final UserEdit user;
+
+  UserEditedState(this.user);
+}

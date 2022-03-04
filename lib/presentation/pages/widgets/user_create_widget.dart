@@ -1,8 +1,6 @@
-import 'package:bloc_post_request/presentation/bloc/user_bloc.dart';
-import 'package:bloc_post_request/presentation/pages/widgets/custom_elevated_button.dart';
 import 'package:bloc_post_request/presentation/pages/widgets/custom_textfild.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 class UserCreateWidget extends StatelessWidget {
   const UserCreateWidget({
@@ -31,14 +29,6 @@ class UserCreateWidget extends StatelessWidget {
             hintText: 'Job',
           ),
           const SizedBox(height: 40),
-          CustomElevatedButton(
-            onPressed: () {
-              context.read<UserBloc>().add(
-                    UserCreateEvent(
-                        name: nameController.text, job: jobController.text),
-                  );
-            },
-          )
         ],
       ),
     );

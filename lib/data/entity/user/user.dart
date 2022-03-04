@@ -22,3 +22,26 @@ class User {
     return data;
   }
 }
+
+class UserEdit {
+  String? name;
+  String? job;
+
+  String? createdAt;
+
+  UserEdit({this.name, this.job, this.createdAt});
+
+  UserEdit.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    job = json['job'];
+    createdAt = json['updatedAt'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['job'] = job;
+    data['updatedAt'] = createdAt;
+    return data;
+  }
+}
